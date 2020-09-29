@@ -8,3 +8,4 @@ chmod +x gen-logs.sh
 ./gen-logs.sh
 ```
 
+http://localhost:12345/test
