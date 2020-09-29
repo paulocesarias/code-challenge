@@ -1,0 +1,53 @@
+name: test-exporter
+endpoint: /test
+port: 12345
+metrics:
+- name: LOG_READER_TX
+  help: Reads a log file
+  type: gauge
+  executions:
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Tx<500' | grep true | wc -l 
+    labels:
+      TX: '<500'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Tx<1000' | grep true | wc -l 
+    labels:
+      TX: '<1000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Tx<5000' | grep true | wc -l 
+    labels:
+      TX: '<5000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Tx<9000' | grep true | wc -l 
+    labels:
+      TX: '<9000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Tx' | wc -l 
+    labels:
+      TX: '<inf'
+  
+- name: LOG_READER_RX
+  help: Reads a log file
+  type: gauge
+  executions:
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Rx<500' | grep true | wc -l 
+    labels:
+      RX: '<500'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Rx<1000' | grep true | wc -l 
+    labels:
+      RX: '<1000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Rx<5000' | grep true | wc -l 
+    labels:
+      RX: '<5000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Rx<9000' | grep true | wc -l 
+    labels:
+      RX: '<9000'
+  - type: bash
+    command: cat /tmp/logfile.dat | jq '.Rx' | wc -l 
+    labels:
+      RX: '<inf'
