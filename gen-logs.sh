@@ -28,7 +28,7 @@ done
 
 docker build -t myexporter -f custom-prometheus-exporter/Dockerfile .
 
-docker run --rm \
+docker run \
     --name custom-prometheus-exporter -p 12345:12345 \
     -v $(pwd)/code-challenge.yaml:/tmp/test-exporter.yaml \
     -v /tmp/logfile.dat:/tmp/logfile.dat \
