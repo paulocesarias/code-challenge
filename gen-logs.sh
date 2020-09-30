@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# echo $mydate
-
 cat /dev/null > /tmp/logfile.dat
 
 level="debug"
@@ -24,8 +22,6 @@ data="{
     \"Rx\":${rx}
     }"
 echo $data >> /tmp/logfile.dat
-# sleep 1
-# echo $data
 done
 
 docker build -t myexporter -f custom-prometheus-exporter/Dockerfile .
