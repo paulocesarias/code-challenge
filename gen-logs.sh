@@ -24,7 +24,7 @@ data="{
 echo $data >> /tmp/logfile.dat
 done
 
-docker build -t myexporter -f custom-prometheus-exporter/Dockerfile .
+cd custom-prometheus-exporter && docker build -t myexporter .
 
 docker rm -f custom-prometheus-exporter
 
