@@ -26,6 +26,7 @@ done
 
 cd custom-prometheus-exporter && docker build -t myexporter .
 
+cd ..
 docker rm -f custom-prometheus-exporter
 
 docker run \
