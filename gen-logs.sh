@@ -9,7 +9,7 @@ ts=`date -d '20200220' +%s`
 conn_id=0
 state="closed"
 
-for i in {0..1440}
+for i in {0..86400}
 do
 conn_id=$i
 ts=$((ts+1))
@@ -24,9 +24,13 @@ data="{
     \"Rx\":${rx}
     }"
 echo $data >> /tmp/logfile.dat
+# sleep 1
+# echo $data
 done
 
 docker build -t myexporter -f custom-prometheus-exporter/Dockerfile .
+
+docker rm -f custom-prometheus-exporter
 
 docker run \
     --name custom-prometheus-exporter -p 12345:12345 \
